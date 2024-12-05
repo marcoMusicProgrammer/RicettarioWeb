@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{navbar}" ></div>
+<div class="w3-container" id="background">
+  <div class="w3-row w3-margin">
+    <form action="/recipesForIngredients/findBy" method="GET">
+      <table>
+        <tr>
+          <th>Ingredient's name: </th>
+          <th> </th>
+        </tr>
+        <tr>
+          <td><input type="text" name="ingredient_value" placeholder="Ingredient"></td>
+          <td>
+            <input type="submit" value="submit">
+          </td>
+          <div th:if="${invalidIngredient}">
+            <span Style="color:red">No recipes with this ingredient</span>
+          </div>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div class="w3-row w3-margin" >
+    <div th:each="recipe : ${recipes}" class="w3-col l6 w3-grey w3-center">
+      <h3><span th:text="${recipe.name}"></span></h3>
+      <div class="w3-card w3-margin">
+        <img src="/images/recipes.png" alt="Lights" style="width:100%;max-width:400px">
+        <footer class="w3-container w3-green" style="height: 300px; max-height:300px">
+          <h4>Recipes Ingredients</h4>
+          <ul>
+            <li th:each="ingredient : ${recipe.getIngredients()}">
+              <span th:text="${ingredient.name}"></span>
+            </li>
+          </ul>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
