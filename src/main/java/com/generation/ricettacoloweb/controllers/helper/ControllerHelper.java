@@ -4,6 +4,7 @@ import com.generation.ricettacoloweb.entities.models.Ingredient;
 import com.generation.ricettacoloweb.entities.models.Recipe;
 import com.generation.ricettacoloweb.entities.repositories.IngredientRepository;
 import com.generation.ricettacoloweb.entities.repositories.RecipeRepository;
+import com.generation.ricettacoloweb.exceptions.AuthorException;
 import com.generation.ricettacoloweb.exceptions.RecipeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,6 @@ public class ControllerHelper implements Helper
 		{
 			if(r.getIngredients().contains(ingredient))
 				recipeByIngredientsName.add(r);
-
 		}
 
 		if(recipeByIngredientsName.isEmpty())
@@ -61,6 +61,45 @@ public class ControllerHelper implements Helper
 		return recipeByIngredientsName;
 	}
 
+	public List<Recipe> getRecipeByAuthorsName(String name)
+	{
+		Recipe recipe = null;
+		try
+		{
+			recipe = recipeRepository.getRecipeByAuthor(name);
+
+		} catch (Exception e)
+		{
+			throw new AuthorException();
+		}
+
+		List<Recipe> recipeByAuthorsName = new ArrayList<>();
+
+		for(Recipe r : getAllRecipes())
+		{
+			if(r.getAuthor().equals(name))
+				recipeByAuthorsName.add(r);
+		}
+
+		if(recipeByAuthorsName.isEmpty())
+			throw new AuthorException();
+
+		return recipeByAuthorsName;
+	}
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
