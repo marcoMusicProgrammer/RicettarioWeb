@@ -2,42 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AllRecipes</title>
+    <title>Title</title>
 </head>
 <body>
 <div th:insert="~{navbar}" ></div>
 <div class="w3-container" id="background">
     <div class="w3-row w3-margin">
-        <div class="w3-cell w3-container">
-            <form action="/allRecipes/findBy" method="GET">
-                <table>
-                    <tr>
-                        <th>Order by: </th>
-                        <th> </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="choice"></label>
-                            <select id="choice" name="scelta">
-                                <option value="blank">blank</option>
-                                <option value="difficulty">difficulty</option>
-                                <option value="time">time</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="submit" value="submit">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div th:if="${invalidType}">
-                                <span Style="color:red">No recipes with this ingredient</span>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+        <form action="/recipesByTypology/findBy" method="GET">
+            <table>
+                <tr>
+                    <th>Author's name: </th>
+                    <th>Order by: </th>
+                    <th> </th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="recipe_typology" placeholder="Typology"></td>
+                    <td>
+                        <label for="choice"></label>
+                        <select id="choice" name="scelta">
+                            <option value="blank">blank</option>
+                            <option value="difficulty">difficulty</option>
+                            <option value="time">time</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="submit" value="submit">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div th:if="${invalidTypology}">
+                            <span Style="color:red">No recipes with this type</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
     <div class="w3-row w3-margin" >
         <div th:each="recipe : ${recipes}" class="w3-col l6 w3-grey w3-center">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,4 +26,14 @@ public class AllRecipes
 		model.addAttribute("title", "All Recipes");
 		return "showAllRecipes";
 	}
+
+	@GetMapping("/findBy")
+	public String allRecipes(Model model, @RequestParam String scelta)
+	{
+		List<Recipe> recipeList = helper.getRecipesByOptions(scelta);
+		model.addAttribute("title", "All Recipes");
+		model.addAttribute("recipes", recipeList);
+		return "showAllRecipes";
+	}
+
 }

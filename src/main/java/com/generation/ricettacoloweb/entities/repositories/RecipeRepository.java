@@ -14,5 +14,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long>
 	List<Recipe> findAllByOrderByTimeAsc();
 	List<Recipe> findAllByOrderByTimeDesc();
 
-	Recipe getRecipeByAuthor(String name);
+	List<Recipe> getRecipeByAuthor(String name);
+
+	List <Recipe> findByAuthor(String author);
+	List<Recipe> getRecipeByType(String typology);
 }

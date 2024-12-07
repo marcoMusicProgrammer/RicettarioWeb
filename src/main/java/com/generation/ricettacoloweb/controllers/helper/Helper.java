@@ -11,5 +11,5 @@ public interface Helper
 	List<Recipe> getRecipesByDifficulty();
 
 	Ingredient getIngredientByName(String name);
-	List<Recipe> getRecipeByIngredientsName(String name);
+	List<Recipe> getRecipeByIngredientsName(String name,String option);
 }

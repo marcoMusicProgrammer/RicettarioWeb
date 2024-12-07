@@ -29,12 +29,19 @@ public class RecipesForIngredients
 	}
 
 	@GetMapping("/findBy")
-	public String recipesForIngredients(@RequestParam String ingredient_value, Model model)
+	public String recipesForIngredients(@RequestParam String ingredient_value, Model model, @RequestParam String scelta)
 	{
-		List<Recipe> recipeList = helper.getRecipeByIngredientsName(ingredient_value);
+		List<Recipe> recipeList = helper.getRecipeByIngredientsName(ingredient_value,scelta);
 		model.addAttribute("recipes", recipeList);
 		model.addAttribute("title","Recipes for Ingredients");
 
+		return "recipesForIngredient";
+	}
+
+	@GetMapping("/order")
+	public String orderingCriteria(Model model,@RequestParam String order)
+	{
+		System.out.println(order);
 		return "recipesForIngredient";
 	}
 }

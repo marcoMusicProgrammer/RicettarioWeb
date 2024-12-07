@@ -3,28 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div th:insert="~{navbar}" ></div>
 <div class="w3-container" id="background">
   <div class="w3-row w3-margin">
-    <form action="/recipesForIngredients/findBy" method="GET">
-      <table>
-        <tr>
-          <th>Ingredient's name: </th>
-          <th> </th>
-        </tr>
-        <tr>
-          <td><input type="text" name="ingredient_value" placeholder="Ingredient"></td>
-          <td>
-            <input type="submit" value="submit">
-          </td>
-          <div th:if="${invalidIngredient}">
-            <span Style="color:red">No recipes with this ingredient</span>
-          </div>
-        </tr>
-      </table>
-    </form>
+    <div class="w3-cell w3-container">
+      <form action="/recipesForIngredients/findBy" method="GET">
+        <table>
+          <tr>
+            <th>Ingredient's name: </th>
+            <th>Order by: </th>
+            <th> </th>
+          </tr>
+          <tr>
+            <td><input type="text" name="ingredient_value" placeholder="Ingredient"></td>
+            <td>
+              <label for="choice"></label>
+              <select id="choice" name="scelta">
+                <option value="blank">blank</option>
+                <option value="difficulty">difficulty</option>
+                <option value="time">time</option>
+              </select>
+            </td>
+            <td>
+              <input type="submit" value="submit">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div th:if="${invalidIngredient}">
+                <span Style="color:red">No recipes with this ingredient</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
   </div>
   <div class="w3-row w3-margin" >
     <div th:each="recipe : ${recipes}" class="w3-col l6 w3-grey w3-center">
@@ -38,6 +54,22 @@
               <span th:text="${ingredient.name}"></span>
             </li>
           </ul>
+          <div>
+            <table class="ingredientsTable">
+              <tr>
+                <th>Author:</th>
+                <th>Difficulty</th>
+                <th>Typology</th>
+                <th>Preparation Time:</th>
+              </tr>
+              <tr>
+                <td><span th:text="${recipe.getAuthor()}"></span></td>
+                <td><span th:text="${recipe.getDifficulty()}"></span></td>
+                <td><span th:text="${recipe.getType()}"></span></td>
+                <td><span th:text="${recipe.getTime()}"></span></td>
+              </tr>
+            </table>
+          </div>
         </footer>
       </div>
     </div>

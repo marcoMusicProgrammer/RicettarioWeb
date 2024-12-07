@@ -15,3 +15,37 @@ body{
     height: 100vh;
     width: 100vw;
 }
+
+.ingredientsTable {
+    border-collapse: collapse; /* Rimuove lo spazio tra i bordi delle celle */
+    width: 100%;
+}
+
+/* Stile per le celle dei th e td */
+.ingredientsTable th,
+.ingredientsTable td {
+    border: 1px solid #ddd; /* Bordo sottile */
+    padding: 8px; /* Spaziatura interna */
+    text-align: left; /* Allinea il testo a sinistra */
+}
+
+/* Stile per l'intestazione */
+.ingredientsTable th {
+    background-color: #525252; /* Sfondo diverso per l'intestazione */
+    font-weight: bold; /* Grassetto per il testo */
+}
+
+/* Stile per le righe pari */
+.ingredientsTable tr:nth-child(even) {
+    background-color: #9f9f9f; /* Colore alternato */
+}
+
+/* Stile per le righe dispari */
+.ingredientsTable tr:nth-child(odd) {
+    background-color: #fff; /* Colore alternato */
+}
+
+/* Hover sulle righe */
+.ingredientsTable tr:hover {
+    background-color: #e2e2e2; /* Colore al passaggio del mouse */
+}

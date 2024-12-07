@@ -12,26 +12,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/recipeForAuthor")
-public class RecipeForAuthor
+@RequestMapping("/recipesByTypology")
+public class recipesByTypology
 {
+
     @Autowired
     private ControllerHelper helper;
 
     @GetMapping
-    public String recipeForAuthor(Model model, @RequestParam (defaultValue = "false",required = false) Boolean invalidAuthor)
+    public String getRecipesByTypology(Model model, @RequestParam(defaultValue = "false", required = false) Boolean invalidTypology)
     {
-        model.addAttribute("invalidAuthor", invalidAuthor);
-        model.addAttribute("title", "Recipe for Author");
-        return "recipeForAuthor";
+        model.addAttribute("invalidTypology", invalidTypology);
+        model.addAttribute("title", "Recipes By Typology");
+        return "recipesByTypology";
     }
 
     @GetMapping("/findBy")
-    public String recipeForAuthor(Model model, @RequestParam String author_value, @RequestParam String scelta)
+    public String findByTypology(Model model, @RequestParam String scelta,@RequestParam String recipe_typology)
     {
-        List<Recipe> recipeList= helper.getRecipeByAuthorsName(author_value,scelta);
+        List<Recipe> recipeList =  helper.getRecipeByTypology(recipe_typology, scelta);
+        model.addAttribute("title", "Recipes By Typology");
         model.addAttribute("recipes", recipeList);
-        model.addAttribute("title", "Recipe for Author");
-        return "recipeForAuthor";
+        return "recipesByTypology";
     }
 }
