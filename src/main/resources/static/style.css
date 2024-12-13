@@ -21,6 +21,10 @@ body{
     width: 100%;
 }
 
+#title{
+    text-align: center;
+}
+
 /* Stile per le celle dei th e td */
 .ingredientsTable th,
 .ingredientsTable td {
